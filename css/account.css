@@ -1,0 +1,101 @@
+body{
+	background-color: #491200;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.card{
+	background-color: #000000;
+	width: 400px;
+	border-radius: 50px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 7rem !important;
+    align-self:  center;
+}
+.top-container{
+	display: flex;
+	align-items: center;
+}
+.profile-image{
+	border-radius: 7px;
+	border: 7px solid #fc6a2b;
+    width: 200px;
+}
+.name{
+	font-size: 20px;
+	font-weight: bold;
+	color: rgb(248, 104, 52) 39;
+	position: relative;
+	top: 2px;
+}
+.mail{
+	font-size: 20px;
+	color: rgb(249, 112, 43);
+	position: absolute ;
+	top: 2px;
+    align-items: center;
+    
+}
+.middle-container {
+    background-color: #fc6a2b; 
+    border: 1px solid #0000; 
+    border-radius: 5px; 
+    padding: 1px; 
+    
+}
+
+.fa {
+    color:#fc6a2b; 
+}
+
+.d-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-right {
+    text-align: center; 
+    font-size: 40px;
+     
+}
+
+.current-balance {
+    font-weight: bold; 
+    margin-bottom: 5px; 
+}
+
+.amount {
+    font-size: 50px; 
+}
+
+
+.recent-border{
+	border-left: 2px solid #fc6a2b;
+	display: flex;
+	align-items: center;
+
+}
+
+
+.recent-orders{
+	font-size: 30px;
+	font-weight: 700;
+	color:#fc6a2b;
+	margin-left: 2px;
+}
+
+.wishlist{
+	font-size: 30px;
+	font-weight: 700;
+	color:#fc6a2b;
+
+}
+.wishlist-border:hover{
+	border-bottom: 1px solid #fc6a2b!important;
+}
+.fashion-studio{
+	font-size: 30px;
+	font-weight: 700;
+	color: #fc6a2b;
+}
+.fashion-studio-border:hover {
+	border-bottom: 1px solid #fc6a2b!important;
+}
