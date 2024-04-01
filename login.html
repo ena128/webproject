@@ -36,18 +36,18 @@
          document.querySelector('.form').addEventListener('submit', function(event) {
             event.preventDefault(); 
             
-            // Read the JSON file containing user data
+            
             fetch('data.json')
                 .then(response => response.json())
                 .then(data => {
-                    // Get user input
+                    
                     let email = document.getElementById('email').value;
                     let password = document.getElementById('password').value;
                     
-                    // Find a matching user in the JSON data
+                    
                     let user = data.users.find(user => user.email === email && user.password === password);
                     
-                    // If user is found, redirect to account page
+                    
                     if (user) {
                         window.location.href = "account.html";
                     } else {

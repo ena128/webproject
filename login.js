@@ -31,13 +31,13 @@ function login() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
 
-    // Assuming 'users' is the array of users loaded from the JSON file
+   
     let user = users.find(user => user.name === username && user.password === password);
 
     if (user) {
-        // Store the logged-in user ID in localStorage
+        
         localStorage.setItem('loggedInUserId', user.id);
-        // Redirect to the account page
+        
         window.location.href = "account.html";
     } else {
         alert("Invalid username or password");

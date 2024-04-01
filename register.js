@@ -1,7 +1,41 @@
 $(document).ready(function() {
     var usersData = {
         "users": [
-            // Your users data from the JSON file
+            {
+                "users": [
+                  {
+                    "id": 1,
+                    "name": "John Doe",
+                    "email": "john@example.com",
+                    "age": 30,
+                    "country": "USA",
+                    "membership": "Gold",
+                    "password": "john123",
+                    "active": true
+                  },
+                  {
+                    "id": 2,
+                    "name": "Damir Slipičević",
+                    "email": "damir@example.com",
+                    "age": 25,
+                    "country": "Canada",
+                    "membership": "Silver",
+                    "password": "damir123",
+                    "active": false
+                  },
+                  {
+                    "id": 3,
+                    "name": "Bob Johnson",
+                    "email": "bob@example.com",
+                    "age": 40,
+                    "country": "UK",
+                    "membership": "Bronze",
+                    "password": "bob123",
+                    "active": true
+                  }
+                ]
+              }
+              
         ]
     };
 
@@ -17,18 +51,18 @@ $(document).ready(function() {
                         name: formData['full-name'],
                         email: formData.email,
                         address: formData.address,
-                        password: formData.password, // Note: Storing passwords in plain text is insecure
+                        password: formData.password, 
                         active: true
                     };
                     usersData.users.push(newUser);
                     resolve(newUser);
                 }
-            }, 1000); // Simulate a delay as if it were a real AJAX request
+            }, 1000); 
         });
     }
 
     $('#register-form').submit(function(e) {
-        e.preventDefault(); // Prevent the default form submission
+        e.preventDefault(); 
 
         var formDataArray = $(this).serializeArray();
         var formData = {};
@@ -38,11 +72,11 @@ $(document).ready(function() {
 
         addUser(formData).then(function(newUser) {
             console.log('Registration successful:', newUser);
-            $('#success-message').show(); // Show success message
-            $('#register-form').trigger('reset'); // Reset form fields
+            $('#success-message').show(); 
+            $('#register-form').trigger('reset'); 
         }).catch(function(error) {
             console.error('Registration error:', error);
-            // Optionally, display an error message to the user
+            
         });
     });
 });

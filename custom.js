@@ -1,7 +1,6 @@
 $(document).ready(function() {
-    var app = $.spapp({ pageNotFound: '404.html' }); // initialize with the page for 404 errors
-
-    // Define routes
+    var app = $.spapp({ pageNotFound: '404.html' }); 
+    
     app.route({ view: 'about', load: 'about-us.html' });
     app.route({ view: 'account', load: 'account.html' });
     app.route({ view: 'blog', load: 'blog.html' });
@@ -17,6 +16,6 @@ $(document).ready(function() {
     app.route({ view: 'services', load: 'services.html' });
     app.route({ view: 'team', load: 'team.html' });
 
-    // Run the application
+    
     app.run();
 });
