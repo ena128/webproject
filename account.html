@@ -1,61 +1,51 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
     <link rel="stylesheet" href="css/account.css">
-  
-    
+    <!-- Include any other stylesheets or libraries here -->
 </head>
-<div class="container d-flex justify-content-center mt-5">
-
-	<div class="card">
-		
-		<div class="top-container">
-			
-			<img src="img\gallery\man.jpeg" class="img-fluid profile-image" width="70">
-			
-			<div class="ml-3">
-				<h5 class="name">Damir Slipicevic</h5>
-				<p class="mail">damir.slipicevic@gmail.com</p>
-			</div>
-		</div>
-        <div>
-            <br>
-            
-        </div>
-
-
-		<div class="middle-container d-flex justify-content-between align-items-center mt-3 p-2">
-            <div class="dollar-div px-3">
-                <div class="round-div"><i class="fa fa-dollar dollar"></i></div>
+<body>
+</head>
+<body>
+    <div class="container d-flex justify-content-center mt-5">
+        <div class="card">
+            <div class="top-container">
+                <img src="" class="img-fluid profile-image" width="70" alt="Profile Image">
+                <div class="ml-3">
+                    <h5 class="name" id="name"></h5>
+                    <p class="mail" id="email"></p>
+                </div>
             </div>
-            <div class="d-flex flex-column text-right mr-2">
-                <span class="current-balance">XL Membership</span> 
-                
+            <div>
+                <br>
             </div>
-           
-            
-            
+            <div class="middle-container d-flex justify-content-between align-items-center mt-3 p-2">
+                <div class="dollar-div px-3">
+                    <div class="round-div"><i class="fa fa-dollar dollar"></i></div>
+                </div>
+                <div class="d-flex flex-column text-right mr-2">
+                    <span class="current-balance" id="membership">Membership</span> 
+                </div>
+            </div>
+            <div>
+                <br>
+            </div>
+            <div class="recent-border mt-4">
+                <span class="recent-orders" id="nameAndSurname">Name and surname</span>
+            </div>
+            <div class="wishlist-border pt-2">
+                <span class="wishlist" id="accountNumber">Account number</span>
+            </div>
+            <div class="fashion-studio-border pt-2">
+                <span class="fashion-studio" id="status">Status</span>
+            </div>
         </div>
-        <div>
-            <br>
-            
-        </div>
-        
-
-		<div class="recent-border mt-4">
-			<span class="recent-orders">Name and surname: Damir Slipičević</span>
-		</div>
-		<div class="wishlist-border pt-2">
-			<span class="wishlist">Account number: 123456</span>
-		</div>
-		<div class="fashion-studio-border pt-2">
-			<span class="fashion-studio">Status: active</span>
-		</div>
-		
-	</div>
-	
-</div>
+    </div>
+    
+    <script src="account.js"></script>
+    
+</body>
+</html>

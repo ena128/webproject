@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fitness Gym</title>
+    <script type="module" src="index.js">
+    
+
+    </script>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
@@ -41,28 +45,29 @@
         </div>
         <nav class="canvas-menu mobile-menu">
             <ul>
-                <li><a href="./index.html">Home</a></li>
-                <li><a href="./about-us.html">About Us</a></li>
-                <li><a href="./classes.html">Classes</a></li>
-                <li><a href="./services.html">Services</a></li>
-                <li><a href="./team.html">Our Team</a></li>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#classes">Classes</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Our Team</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="dropdown">
-                        <li><a href="./about-us.html">About us</a></li>
-                        <li><a href="./class-timetable.html">Classes timetable</a></li>
-                        <li><a href="./bmi-calculator.html">Bmi calculate</a></li>
-                        <li><a href="./team.html">Our team</a></li>
-                        <li><a href="./gallery.html">Gallery</a></li>
-                        <li><a href="./blog.html">Our blog</a></li>
-                        <li><a href="./404.html">404</a></li>
+                        <li><a href="#about">About us</a></li>
+                        <li><a href="#class-timetable">Classes timetable</a></li>
+                        <li><a href="#bmi-calculator">BMI Calculator</a></li>
+                        <li><a href="#team">Our team</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#blog">Our blog</a></li>
+                        <li><a href="#error">404</a></li>
                     </ul>
                 </li>
-                <li><a href="./contact.html">Contact</a></li>
-                <li><a href="./login.html">Login</a></li>
-                <li><a href="./account.html">Account</a></li>
-                
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#account">Account</a></li>
             </ul>
         </nav>
+        
+       
         <div id="mobile-menu-wrap"></div>
         <div class="canvas-social">
             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -108,6 +113,9 @@
                             <li><a href="./account.html">Account</a></li>
                         </ul>
                     </nav>
+                    
+                      
+  
                 </div>
                 <div class="col-lg-3">
                     <div class="top-option">
@@ -129,7 +137,50 @@
         </div>
     </header>
     <!-- Header End -->
+    
+    <main id="spapp" role="main">
+        <!-- Home view -->
+        <section id="home" data-load="home.html"></section>
+      
+        <!-- About Us view -->
+        <section id="about" data-load="about-us.html"></section>
+      
+        <!-- Classes view -->
+        <section id="classes" data-load="classes.html"></section>
+      
+        <!-- Services view -->
+        <section id="services" data-load="services.html"></section>
+      
+        <!-- Team view -->
+        <section id="team" data-load="team.html"></section>
+      
+        <!-- Class Timetable view -->
+        <section id="class-timetable" data-load="class-timetable.html"></section>
+      
+        <!-- BMI Calculator view -->
+        <section id="bmi-calculator" data-load="bmi-calculator.html"></section>
+      
+        <!-- Gallery view -->
+        <section id="gallery" data-load="gallery.html"></section>
+      
+        <!-- Blog view -->
+        <section id="blog" data-load="blog.html"></section>
+      
+        <!-- Error 404 view -->
+        <section id="error" data-load="404.html"></section>
+      
+        <!-- Contact view -->
+        <section id="contact" data-load="contact.html"></section>
+      
+        <!-- Login view -->
+        <section id="login" data-load="login.html"></section>
+      
+        <!-- Account view -->
+        <section id="account" data-load="account.html"></section>
+      </main>
+      
 
+    
     <!-- Hero Section Begin -->
     <section class="hero-section">
         <div class="hs-slider owl-carousel">
@@ -175,6 +226,13 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="cs-item">
+                        <span class="flaticon-034-stationary-bike"></span>
+                        <h4>Modern equipment</h4>
+                        <p>Our gym is equipped with the newest and best equipment. All types of machines, weights, tracks and side equipment, so you don't have to worry about anything!</p>
+                    </div>
+                </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="cs-item">
                         <span class="flaticon-034-stationary-bike"></span>
@@ -257,24 +315,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="img/classes/class-4.jpg" alt="">
-                        </div>
-                        <div class="ci-text">
-                            <span>Cardio</span>
-                            <h4>Indoor cycling</h4>
-                            <a href="#"><i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="class-item">
-                        <div class="ci-pic">
-                            <img src="img/classes/class-5.jpg" alt="">
-                        </div>
-                        
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -563,14 +604,19 @@
     <!-- Search model end -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/masonry.pkgd.min.js"></script>
-    <script src="js/jquery.barfiller.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/masonry.pkgd.min.js"></script>
+<script src="js/jquery.barfiller.js"></script>
+<script src="js/jquery.slicknav.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/main.js"></script>
+
+<!-- SPApp Scripts -->
+<script src="js/jquery.spapp.min.js"></script>
+<script src="js/custom.js"></script>
 
 
 
