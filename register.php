@@ -1,5 +1,5 @@
 <?php
-// Include the database connection file
+
 require 'MysqlConnection.php';
 
 $payload = $_REQUEST;
@@ -21,47 +21,53 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     }
     exit(0);
 }
-if (isset($_POST["password"])) {
-    $password = $_POST["password"];
-} else {
-    // 'password' field is missing, handle the error
-    echo json_encode(array('success' => false, 'error' => 'Password field is missing'));
-    exit(); // Stop further execution
-}
-
-
-// Retrieve form data
-$fullName = $_POST["full_name"];  // Corrected variable name
-$email = $_POST["email"];
-$address = $_POST["address"];
-$password = $_POST["password"];
 
 try {
-    // Hash the password for security
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Prepare SQL statement to insert data into the Members table
-    $stmt = $conn->prepare("INSERT INTO Members (full_name, address, email, password) VALUES (:fullName, :address, :email, :password)");
-    $stmt->bindParam(':fullName', $fullName);
-    $stmt->bindParam(':address', $address);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password', $hashed_password);
+    // Retrieve form data
+    $name = $_REQUEST["name"];
+    $email = $_REQUEST["email"];
+    $password = $_REQUEST["password"];
     
-    // Execute the SQL statement
-    if ($stmt->execute()) {
-        echo json_encode(array('success' => true));
-    } else {
-        echo json_encode(array('success' => false));
+
+    // Check if all required fields are filled
+    if (empty($name) || empty($email) || empty($password) ) {
+        throw new Exception("All fields are required");
     }
-    // Check if 'password' key is present in $_POST array
 
+    // Prepare and execute the SQL statement to check if email already exists
+    $SELECT = "SELECT email FROM Members WHERE email = :email LIMIT 1";
+    $stmt = $conn->prepare($SELECT);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Proceed with other form data validation and processing...
+    if ($row) {
+        throw new Exception("Someone already registered using this email");
+    }
 
-} catch(PDOException $e) {
-    echo json_encode(array('success' => false, 'error' => 'Registration failed. Please try again later.'));
+    $SELECT = "SELECT email FROM Members WHERE email = :email LIMIT 1";
+    $stmt = $conn->prepare($SELECT);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($row) {
+        throw new Exception("Someone already registered using this email");
+    }
+    
+    // Prepare and execute the SQL statement to insert data into the User table
+    $INSERT = "INSERT INTO Members (email, password, name) VALUES (:email, :password,:name)";
+    $stmt = $conn->prepare($INSERT);
+    $stmt->bindParam(':name', $name);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':password', $password);
+    $stmt->execute();
+
+    // Close the database connection
+    $conn = null;
+
+} catch (Exception $e) {
+    // Display the error message
+    echo "Error: " . $e->getMessage();
 }
-
-// Close connection
-$conn = null;
 ?>
