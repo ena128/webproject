@@ -1,36 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Retrieve the logged-in user ID from localStorage
-    const loggedInUserId = localStorage.getItem('loggedInUserId');
+    // Retrieve the logged-in user information from localStorage
+    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
 
-    if (loggedInUserId) {
-        // Fetch user data based on the logged-in user ID
-        fetchUserData(loggedInUserId);
+    if (loggedInUser) {
+        // Display user data on the account page
+        document.getElementById('name').textContent = loggedInUser.name;
+        document.getElementById('email').textContent = loggedInUser.email;
+        document.getElementById('membership').textContent = loggedInUser.membership;
+        document.getElementById('nameAndSurname').textContent = `Name and surname: ${loggedInUser.name}`;
+        document.getElementById('accountNumber').textContent = `Account number: ${loggedInUser.id}`;
+        document.getElementById('status').textContent = `Status: ${loggedInUser.active ? "Active" : "Inactive"}`;
     } else {
-        console.error("User ID not provided.");
+        console.error("User data not found.");
     }
 });
-
-function fetchUserData(userId) {
-    fetch('data.json')
-        .then(response => response.json())
-        .then(data => {
-            let user = data.users.find(user => user.id == userId);
-
-            if (user) {
-                document.getElementById('name').textContent = user.name;
-                document.getElementById('email').textContent = user.email;
-                document.getElementById('membership').textContent = user.membership;
-                document.getElementById('nameAndSurname').textContent = `Name and surname: ${user.name}`;
-                document.getElementById('accountNumber').textContent = `Account number: ${user.id}`;
-                
-                // Display "Active" or "Inactive" based on the value of the "active" field
-                const status = user.active ? "Active" : "Inactive";
-                document.getElementById('status').textContent = `Status: ${status}`;
-            } else {
-                console.error("User not found.");
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-}

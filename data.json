@@ -1,34 +1,38 @@
-{
-  "users": [
-    {
+[
+  {
       "id": 1,
       "name": "John Doe",
       "email": "john@example.com",
       "age": 30,
-      "country": "USA",
-      "membership": "Gold",
-      "password": "john123",
-      "active": true
-    },
-    {
+      "gender": "Male",
+      "membership_type_id": 1,
+      "password": "JohnDoe123"
+  },
+  {
       "id": 2,
-      "name": "Damir Slipičević",
-      "email": "damir@example.com",
-      "age": 25,
-      "country": "Canada",
-      "membership": "Silver",
-      "password": "damir123",
-      "active": false
-    },
-    {
+      "name": "Eva Martinez",
+      "email": "eva@example.com",
+      "age": 35,
+      "gender": "Female",
+      "membership_type_id": 2,
+      "password": "EvaMartinez123"
+  },
+  {
       "id": 3,
-      "name": "Bob Johnson",
+      "name": "David Lee",
+      "email": "david@example.com",
+      "age": 28,
+      "gender": "Male",
+      "membership_type_id": 3,
+      "password": "DavidLee123"
+  },
+  {
+      "id": 4,
+      "name": "Bob Smith",
       "email": "bob@example.com",
-      "age": 40,
-      "country": "UK",
-      "membership": "Bronze",
-      "password": "bob123",
-      "active": true
-    }
-  ]
-}
+      "age": 25,
+      "gender": "Male",
+      "membership_type_id": 1,
+      "password": "BobSmith123"
+  }
+]

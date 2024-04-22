@@ -1,8 +1,6 @@
 document.querySelector('.form').addEventListener('submit', function(event) {
     event.preventDefault(); 
-    
-    
-    
+
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
     
@@ -11,7 +9,7 @@ document.querySelector('.form').addEventListener('submit', function(event) {
         password: password
     };
     
-    fetch(loginEndpoint, {
+    fetch('login.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -20,53 +18,20 @@ document.querySelector('.form').addEventListener('submit', function(event) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log(data); 
+        if (data.success) {
+            localStorage.setItem('loggedInUser', JSON.stringify({
+                membership: data.membership,
+                name: data.name,
+                accountNumber: data.accountNumber,
+                status: data.status
+            }));
+            window.location.href = "account.html";
+        } else {
+            alert(data.error || "Login failed. Please check your credentials.");
+        }
     })
     .catch(error => {
         console.error('Error:', error);
+        alert("An error occurred. Please try again later.");
     });
 });
-
-function login() {
-    let username = document.getElementById("username").value;
-    let password = document.getElementById("password").value;
-
-   
-    let user = users.find(user => user.name === username && user.password === password);
-
-    if (user) {
-        
-        localStorage.setItem('loggedInUserId', user.id);
-        
-        window.location.href = "account.html";
-    } else {
-        alert("Invalid username or password");
-    }
-}
-
-
-function updateLoginButton() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    let loginButton = document.getElementById("login-button");
-    
-    if (currentUser) {
-        loginButton.innerHTML = "Logout";
-        loginButton.href = "#home";
-    } else {
-        loginButton.innerHTML = "Login";
-        loginButton.href = "#login";
-    }
-}
-
-function loginHandle() {
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    
-    if (currentUser) {
-        localStorage.removeItem('currentUser');
-        updateLoginButton();
-        window.location.href = "#login";
-    } else {
-        updateLoginButton();
-        window.location.href = "#home";
-    }
-}

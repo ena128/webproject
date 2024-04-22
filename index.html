@@ -63,7 +63,7 @@
                 </li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#login">Login</a></li>
-                <li><a href="#account">Account</a></li>
+                
             </ul>
         </nav>
         
@@ -110,7 +110,7 @@
                             </li>
                             <li><a href="./contact.html">Contact</a></li>
                             <li><a href="./login.html">Login</a></li>
-                            <li><a href="./account.html">Account</a></li>
+                            
                         </ul>
                     </nav>
                     
@@ -565,7 +565,7 @@
                             <li><a href="#">Blog</a></li>
                             <li><a href="#">Classes</a></li>
                             <li><a href="#">Contact</a></li>
-                            <li><a href="#">Account</a></li>
+                            
                         </ul>
                     </div>
                 </div>
@@ -575,7 +575,7 @@
                         <ul>
                             <li><a href="login.html">Login</a></li>
                             <li><a href="account.html">Account</a></li>
-                            <li><a href="#">My account</a></li>
+                            <li><a href="#">My 'šš˙xccccccccccccccccc </a></li>
                             <li><a href="#">Subscribe</a></li>
                             <li><a href="#">Contact</a></li>
                         </ul>
@@ -589,6 +589,22 @@
                 </div>
             </div>
         </div>
+        <div id="users"></div>
+
+    <script>
+        
+        fetch('/api/users')
+            .then(response => response.json())
+            .then(users => {
+                const usersContainer = document.getElementById('users');
+                users.forEach(user => {
+                    const userElement = document.createElement('p');
+                    userElement.textContent = `Name: ${user.name}, Email: ${user.email}`;
+                    usersContainer.appendChild(userElement);
+                });
+            })
+            .catch(error => console.error('Error fetching users:', error));
+    </script>
     </section>
     <!-- Footer Section End -->
 
@@ -617,6 +633,8 @@
 <!-- SPApp Scripts -->
 <script src="js/jquery.spapp.min.js"></script>
 <script src="js/custom.js"></script>
+<script src="fetchUsers.js"></script>
+
 
 
 
