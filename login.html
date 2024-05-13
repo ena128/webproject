@@ -9,7 +9,7 @@
 </head>
 <body>
     <!-- Your login form -->
-    <form class="form">
+    <form id="loginForm">
         <div class="fields">
             <div class="signup">
                 <p>Don't have an account?</p>
@@ -31,42 +31,9 @@
     </form>
 
     <!-- Add your script file at the end -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script src="login.js"></script>
-    <script>
-         document.querySelector('.form').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            
-            let email = document.getElementById('email').value;
-            let password = document.getElementById('password').value;
-            
-            // Create an object to send in the request body
-            let formData = {
-                email: email,
-                password: password
-            };
-            
-            fetch('login.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Store user data in localStorage
-                    localStorage.setItem('loggedInUser', JSON.stringify(data.user));
-                    // Redirect to the account page
-                    window.location.href = "account.html";
-                } else {
-                    alert(data.error || "Login failed. Please check your credentials.");
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
+    
 </body>
 </html>

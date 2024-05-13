@@ -1,49 +1,27 @@
 <?php
 
-require 'MysqlConnection.php';
+require 'MysqlConnection.php'; 
+$payload = $_POST;
 
-$payload = $_REQUEST;
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
 
-// Allow from any origin
-if (isset($_SERVER['HTTP_ORIGIN'])) {
-    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
-    header('Access-Control-Allow-Credentials: true');
-    header('Access-Control-Max-Age: 86400');    // cache for 1 day
-}
-
-// Access-Control headers are received during OPTIONS requests
-if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
-        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
-    }
-    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
-        header("Access-Control-Allow-Headers: {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
-    }
-    exit(0);
-}
+header('Content-Type: application/json');
 
 try {
     // Retrieve form data
-    $name = $_REQUEST["name"];
-    $email = $_REQUEST["email"];
-    $password = $_REQUEST["password"];
-    
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
 
     // Check if all required fields are filled
-    if (empty($name) || empty($email) || empty($password) ) {
+    if (empty($name) || empty($email) || empty($password)) {
         throw new Exception("All fields are required");
     }
 
-    // Prepare and execute the SQL statement to check if email already exists
-    $SELECT = "SELECT email FROM Members WHERE email = :email LIMIT 1";
-    $stmt = $conn->prepare($SELECT);
-    $stmt->bindParam(':email', $email);
-    $stmt->execute();
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($row) {
-        throw new Exception("Someone already registered using this email");
-    }
+    //Password encryption
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     $SELECT = "SELECT email FROM Members WHERE email = :email LIMIT 1";
     $stmt = $conn->prepare($SELECT);
@@ -54,20 +32,20 @@ try {
     if ($row) {
         throw new Exception("Someone already registered using this email");
     }
-    
-    // Prepare and execute the SQL statement to insert data into the User table
-    $INSERT = "INSERT INTO Members (email, password, name) VALUES (:email, :password,:name)";
-    $stmt = $conn->prepare($INSERT);
+
+    $sql = "INSERT INTO Members (name, email, password)
+            VALUES (:name, :email, :password)";
+    $stmt = $conn->prepare($sql);
     $stmt->bindParam(':name', $name);
     $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':password', $hashedPassword); 
     $stmt->execute();
 
-    // Close the database connection
-    $conn = null;
+    echo json_encode(array('success' => true));
 
-} catch (Exception $e) {
-    // Display the error message
-    echo "Error: " . $e->getMessage();
+} catch(PDOException $e) {
+    echo json_encode(array('error' => $e->getMessage()));
 }
+
+$conn = null; // Zatvaranje konekcije s bazom podataka
 ?>

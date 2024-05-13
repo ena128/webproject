@@ -4,35 +4,29 @@ $(document).ready(function(){
 
         // Get form data
         var formData = {
-            'full-name' : $('#full-name').val(),
+            'name' : $('#name').val(),
             'email' : $('#email').val(),
-            'address' : $('#address').val(),
             'password' : $('#password').val()
         };
 
         // Send the form data to the server using AJAX
         $.ajax({
             type: 'POST',
-            url: 'register.php',
+            url: 'http://localhost/gymlife-master/register.php',
             data: formData,
-            dataType: 'text',
-            encode: true,
+            dataType: 'json',
             success: function(response) {
                 if (response.success) {
-                    $('#success-message').show();
+                    console.log("Successful registration.");
+                    window.location.href ='#login';
                 } else {
                     alert('Registration failed. ' + response.error);
                 }
+
             },
             error: function(xhr, status, error) {
-                // Handle specific error codes
-                if (xhr.status === 405) {
-                    alert('Method Not Allowed. Please try again later.');
-                } else {
-                    // Handle other errors
-                    console.error(xhr.responseText);
-                    alert('An error occurred. Please try again later.');
-                }
+                
+               
             }
         });
     });

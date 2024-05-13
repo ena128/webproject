@@ -1,0 +1,212 @@
+openapi: 3.0.0
+info:
+  title: Trainer API
+  description: API for trainers
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5500
+paths:
+  /trainers:
+    get:
+      summary: Get all trainers
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Trainer'
+    post:
+      summary: Create a new trainer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewTrainer'
+      responses:
+        '201':
+          description: Trainer added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+  /trainers/{trainerId}:
+    parameters:
+      - in: path
+        name: trainerId
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get trainer by ID
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+    put:
+      summary: Update trainer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatedTrainer'
+      responses:
+        '200':
+          description: Trainer updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Trainer'
+    delete:
+      summary: Delete trainer
+      responses:
+        '204':
+          description: Trainer deleted successfully
+/users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewUser'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /users/{userId}:
+    parameters:
+      - in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+    get:
+      summary: Get user by ID
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    put:
+      summary: Update user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatedUser'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete user
+      responses:
+        '204':
+          description: User deleted successfully
+/schedule:
+    get:
+      summary: Get schedule
+      description: Get training schedule
+      responses:
+        '200':
+          description: Success response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+    post:
+      summary: Create new event in schedule
+      description: Create new event in schedule.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewEvent'
+      responses:
+        '201':
+          description: Event added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+components:
+  schemas:
+    Trainer:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+    NewTrainer:
+      type: object
+      properties:
+        username:
+          type: string
+    UpdatedTrainer:
+      type: object
+      properties:
+        username:
+          type: string
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        username:
+          type: string
+    NewUser:
+      type: object
+      properties:
+        username:
+          type: string
+    UpdatedUser:
+      type: object
+      properties:
+        username:
+          type: string
+    Event:
+      type: object
+      properties:
+        eventId:
+          type: integer
+        eventName:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
